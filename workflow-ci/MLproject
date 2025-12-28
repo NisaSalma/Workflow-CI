@@ -1,5 +1,0 @@
-name: ames-housing-basic
-
-entry_points:
-  main:
-    command: "python modelling.py"
