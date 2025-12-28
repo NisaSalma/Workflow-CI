@@ -20,7 +20,16 @@ jobs:
       - name: Install MLflow
         run: pip install mlflow scikit-learn pandas
 
+      - name: Debug files
+        run: |
+          echo "Root folder:"
+          ls
+          echo "Workflow-CI folder:"
+          ls Workflow-CI
+          echo "MLproject content:"
+          cat Workflow-CI/MLproject
+
       - name: Run MLflow Project
         run: |
           cd Workflow-CI
-          mlflow run
+          mlflow run .
