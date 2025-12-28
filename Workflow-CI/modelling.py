@@ -7,7 +7,6 @@ import mlflow.sklearn
 import os
 
 mlflow.set_experiment("Ames Housing - Basic Model")
-
 mlflow.sklearn.autolog()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -22,14 +21,14 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
-with mlflow.start_run():
-    model = RandomForestRegressor(random_state=42)
-    model.fit(X_train, y_train)
+# TIDAK pakai start_run()
+model = RandomForestRegressor(random_state=42)
+model.fit(X_train, y_train)
 
-    y_pred = model.predict(X_test)
+y_pred = model.predict(X_test)
 
-    mse = mean_squared_error(y_test, y_pred)
-    r2 = r2_score(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
 
-    print("MSE:", mse)
-    print("R2:", r2)
+print("MSE:", mse)
+print("R2:", r2)
