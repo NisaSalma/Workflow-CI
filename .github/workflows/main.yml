@@ -17,19 +17,18 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install MLflow
-        run: pip install mlflow scikit-learn pandas
+      - name: Install dependencies
+        run: |
+          pip install mlflow
+          pip install -r Workflow-CI/requirements.txt
 
       - name: Debug files
         run: |
-          echo "Root folder:"
           ls
-          echo "Workflow-CI folder:"
           ls Workflow-CI
-          echo "MLproject content:"
           cat Workflow-CI/MLproject
 
-      - name: Run MLflow Project
+      - name: Run MLflow Project (NO CONDA)
         run: |
           cd Workflow-CI
-          mlflow run .
+          mlflow run . --env-manager=local
